@@ -22,19 +22,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     totalMoney: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0
     },
-    totalIncome: {
+    ticketChat: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0
     },
-    totalExpense: {
+    ticketVideo: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    membership: {
-      type: DataTypes.INTEGER,
-      defaultValue: false
+      defaultValue: 0
     },
   }, {
     sequelize,

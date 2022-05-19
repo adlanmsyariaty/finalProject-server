@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secretKeyword = 'thisismysecretkey'
+const secretKeyword = process.env.SECRET_KEY
 
 const tokenGenerator = (payload) => {
     return jwt.sign(payload, secretKeyword, {expiresIn: '2h'})

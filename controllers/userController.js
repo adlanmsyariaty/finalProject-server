@@ -1,4 +1,4 @@
-const { User, sequelize } = require("../models");
+const { User, Wallet, sequelize } = require("../models");
 const { comparePasswordWithHash } = require("../helpers/bcrypt");
 const { tokenGenerator } = require("../helpers/jwt");
 const { Op } = require("sequelize");
@@ -20,6 +20,16 @@ class UserController {
           transaction: t,
         }
       );
+
+      const newWallet = await Wallet.create(
+        {
+          UserId: newUser.id
+        },
+        {
+          transaction: t,
+        }
+      );
+
       await t.commit();
       res.status(201).json(newUser);
     } catch (error) {
@@ -55,63 +65,13 @@ class UserController {
         id: selectedUser.id,
         email: selectedUser.email,
       };
-      
+
       const token = tokenGenerator(payload);
       await t.commit();
       res.status(200).json({
         access_token: token,
         user: selectedUser,
       });
-    } catch (error) {
-      await t.rollback();
-      next(error);
-    }
-  }
-
-  static async updateUser(req, res, next) {
-    const t = await sequelize.transaction();
-    try {
-      const { name, username, email, password } = req.body;
-      const id = +req.params.id;
-
-      if (id !== req.user.id) {
-        throw { name: "USER_NOT_FOUND" };
-      }
-
-      let checkData = await User.findOne({
-        where: {
-          id,
-        },
-        transaction: t,
-      });
-
-      if (!checkData) throw { name: "USER_NOT_FOUND" };
-
-      await User.update(
-        {
-          name,
-          username,
-          email,
-          password,
-        },
-        {
-          where: {
-            id,
-          },
-          individualHooks: true,
-          transaction: t,
-        }
-      );
-
-      const updatedUser = await User.findOne({
-        where: {
-          id,
-        },
-        transaction: t,
-      });
-
-      await t.commit();
-      res.status(200).json(updatedUser);
     } catch (error) {
       await t.rollback();
       next(error);

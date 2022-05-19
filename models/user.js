@@ -78,14 +78,15 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       defaultValue: 'admin'
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     sequelize,
     hooks: {
       beforeCreate(instance) {
-        instance.password = hashPassword(instance.password)
-      },
-      beforeUpdate(instance) {
         instance.password = hashPassword(instance.password)
       }
     },
