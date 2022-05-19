@@ -146,6 +146,7 @@ describe("POST /register", () => {
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body.message).toBeInstanceOf(Array);
       expect(res.body.message).toContain("Email is required");
+      expect(res.body.message).toContain("Invalid email format");
     });
 
     test("should return error message Name is required with status 400", async () => {
