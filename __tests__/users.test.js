@@ -201,6 +201,8 @@ describe("POST /register", () => {
     //         expect(res.body.message).toContain('Email is required')
     //     })
 
+    
+
     //     test('should return error message Password is required & Min. Character of password is 5 with status 400', async () => {
     //         const newViewer = {username: 'adlan', email: 'adlanmalik@gmail.com', password: ''}
     //         const res = await request(app).post('/viewers/register').send(newViewer)
