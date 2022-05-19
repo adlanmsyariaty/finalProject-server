@@ -4,7 +4,8 @@
   "description": "THIS README FOR M-CURE PROJECT [SERVER]",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest --coverage --detectOpenHandles --forceExit --runInBand",
+    "start": "node bin/www"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,9 @@
     "sequelize": "^6.19.2"
   },
   "devDependencies": {
+    "jest": "^28.1.0",
     "nodemon": "^2.0.16",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.3"
   }
 }

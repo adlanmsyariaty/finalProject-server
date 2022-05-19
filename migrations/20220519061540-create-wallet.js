@@ -20,19 +20,15 @@ module.exports = {
       },
       totalMoney: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        defaultValue: 0
       },
-      totalIncome: {
+      ticketChat: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        defaultValue: 0
       },
-      totalExpense: {
+      ticketVideo: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      membership: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: 0
       },
       createdAt: {
         allowNull: false,

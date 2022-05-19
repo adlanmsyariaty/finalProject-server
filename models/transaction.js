@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: "amount is required" },
         notNull: { msg: "amount is required" },
+        min: {
+          args: [0],
+          msg: "Amount should be more than equal 0"
+        }
       },
     },
     transactionDate: {

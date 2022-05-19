@@ -7,7 +7,6 @@ const consultantRouter = require('./consultantRouter')
 const { adminAuthentication } = require('../middlewares/authentication')
 
 router.use('/users', userRouter)
-
 router.use('/login', loginRouter)
 router.use(adminAuthentication)
 router.use('/consultants', consultantRouter)
