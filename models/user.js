@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { hashPassword } = require('../helpers/bcrypt')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -15,13 +16,76 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Name is required'
+        },
+        notEmpty: {
+          msg: 'Name is required'
+        }
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Username is required'
+        },
+        notEmpty: {
+          msg: 'Username is required'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: 'Email must be unique'
+      },
+      validate: {
+        notNull: {
+          msg: 'Email is required'
+        },
+        notEmpty: {
+          msg: 'Email is required'
+        },
+        isEmail: {
+          msg: 'Invalid email format'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Password is required'
+        },
+        notEmpty: {
+          msg: 'Password is required'
+        },
+        len: {
+          args: [5, 100],
+          msg: 'Min. Character of password is 5'
+        }
+      }
+    },
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: 'admin'
+    }
   }, {
     sequelize,
+    hooks: {
+      beforeCreate(instance) {
+        instance.password = hashPassword(instance.password)
+      }
+    },
     modelName: 'User',
   });
   return User;
