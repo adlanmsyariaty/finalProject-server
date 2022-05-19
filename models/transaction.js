@@ -11,14 +11,44 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Transaction.belongsTo(models.Wallet)
+      Transaction.belongsTo(models.Category)
     }
   }
   Transaction.init({
-    amount: DataTypes.INTEGER,
-    transactionDate: DataTypes.DATE,
-    imageReceipt: DataTypes.STRING,
-    WalletId: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "amount is required" },
+        notNull: { msg: "amount is required" },
+      },
+    },
+    transactionDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "date is required" },
+        notNull: { msg: "date is required" },
+      },
+    },
+    imageReceipt: { type: DataTypes.STRING },
+    WalletId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "wallet is required" },
+        notNull: { msg: "wallet is required" },
+      },
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "category is required" },
+        notNull: { msg: "category is required" },
+      },
+    }
   }, {
     sequelize,
     modelName: 'Transaction',

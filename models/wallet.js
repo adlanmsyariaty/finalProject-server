@@ -11,14 +11,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Wallet.belongsTo(models.User)
+      Wallet.hasMany(models.Transaction)
     }
   }
   Wallet.init({
-    UserId: DataTypes.INTEGER,
-    totalMoney: DataTypes.INTEGER,
-    totalIncome: DataTypes.INTEGER,
-    totalExpense: DataTypes.INTEGER,
-    membership: DataTypes.STRING
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalMoney: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalIncome: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalExpense: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    membership: {
+      type: DataTypes.INTEGER,
+      defaultValue: false
+    },
   }, {
     sequelize,
     modelName: 'Wallet',
