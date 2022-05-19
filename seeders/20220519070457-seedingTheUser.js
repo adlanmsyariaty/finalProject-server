@@ -17,6 +17,7 @@ module.exports = {
         username: "adlanmalik",
         email: "adlan@mail.com",
         password: "12345",
+        role: "admin"
       },
       {
         name: "andrew",
