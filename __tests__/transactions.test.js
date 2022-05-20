@@ -532,16 +532,6 @@ describe("GET /users/transactions/report", () => {
       expect(res.body.income).toEqual(expect.any(Object));
     });
   });
-
-  // describe("GET /users/transactions/report -- success case to get report", () => {
-  //   jest.spyOn(User, "findAll").mockRejectedValue("Internal Server Error");
-  //   test("should return new transaction data", async () => {
-  //     const res = await request(app)
-  //       .get("/users/transactions/report")
-  //       .set("access_token", validTokenUser);
-  //     expect(res.status).toBe(500);
-  //   });
-  // });
 });
 
 describe("DELETE /users/transactions/:id", () => {
