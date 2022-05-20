@@ -14,7 +14,7 @@ class AdminController {
           username,
           email,
           password,
-          role: "admin"
+          role: "admin",
         },
         {
           transaction: t,
@@ -38,7 +38,7 @@ class AdminController {
           username,
           email,
           password,
-          role: "consultant"
+          role: "consultant",
         },
         {
           transaction: t,
@@ -61,10 +61,7 @@ class AdminController {
 
       const selectedUser = await User.findOne({
         where: {
-          [Op.and]: [
-            { email: email },
-            { role: 'admin' }
-          ]
+          [Op.and]: [{ email: email }, { role: "admin" }],
         },
         transaction: t,
       });

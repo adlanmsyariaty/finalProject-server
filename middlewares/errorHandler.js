@@ -9,10 +9,6 @@ const errorHandler = (err, req, res, next) => {
     res.status(400).json({
       message: "Your email is already registered",
     });
-  } else if (err.name === "EMAIL_PASSWORD_IS_REQUIRED") {
-    res.status(400).json({
-      message: "Email & password is required",
-    });
   } else if (err.name === "EMAIL_IS_REQUIRED") {
     res.status(400).json({
       message: "Email is required",
@@ -36,21 +32,13 @@ const errorHandler = (err, req, res, next) => {
     res.status(401).json({
       message: "Unauthorized access account",
     });
-  } else if (err.name === "Forbidden") {
-    res.status(403).json({
-      message: "Forbidden access",
-    });
   } else if (err.name === "CONSULTANT_NOT_FOUND") {
     res.status(404).json({
       message: "Consultant not found",
     });
-  } else if (err.name === "GENRE_NOT_FOUND") {
+  } else if (err.name === "TRANSACTION_NOT_FOUND") {
     res.status(404).json({
-      message: "Genre not found",
-    });
-  } else if (err.name === "CAST_NOT_FOUND") {
-    res.status(404).json({
-      message: "Cast not found",
+      message: "Transaction not found",
     });
   } else {
     console.log(err);

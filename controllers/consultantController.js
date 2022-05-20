@@ -7,7 +7,7 @@ class ConsultantController {
     try {
       const consultants = await User.findAll({
         where: {
-          role: 'consultant'
+          role: "consultant",
         },
         transaction: t,
       });
@@ -22,7 +22,7 @@ class ConsultantController {
   static async deleteConsultant(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const id = +req.params.id
+      const id = +req.params.id;
       const consultant = await User.findOne({
         where: {
           [Op.and]: [{ id: id }, { role: "consultant" }],
@@ -31,6 +31,15 @@ class ConsultantController {
       });
 
       if (!consultant) throw { name: "CONSULTANT_NOT_FOUND" };
+
+      await User.destroy(
+        {
+          where: {
+            id,
+          },
+          transaction: t,
+        }
+      );
 
       await t.commit();
       res.status(200).json(consultant);

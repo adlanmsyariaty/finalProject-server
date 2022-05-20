@@ -12,5 +12,4 @@ router.use(adminAuthentication)
 router.use('/consultants', consultantRouter)
 router.use('/register', registerRouter)
 
-
 module.exports = router

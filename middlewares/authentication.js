@@ -25,7 +25,7 @@ const userAuthentication = async (req, res, next) => {
     const { access_token } = req.headers;
     const payload = payloadReader(access_token);
     const selectedUser = await User.findByPk(payload.id);
-    if (!selectedUser || selectedUser.role !== "user") {
+    if (!selectedUser || selectedUser.role === "admin") {
       throw { name: "Unauthorized", statusCode: 401 };
     } else {
       req.user = {

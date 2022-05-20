@@ -23,7 +23,7 @@ class UserController {
 
       const newWallet = await Wallet.create(
         {
-          UserId: newUser.id
+          UserId: newUser.id,
         },
         {
           transaction: t,
