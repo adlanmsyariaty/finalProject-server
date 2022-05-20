@@ -3,13 +3,13 @@ const { Transaction, Wallet, Category, sequelize } = require("../models");
 class Controller {
   static async fetchTransactions(req, res, next) {
     try {
-      const id = +req.user.id
+      const id = +req.user.id;
 
       const walletData = await Wallet.findOne({
         where: {
-          UserId: id
-        }
-      })
+          UserId: id,
+        },
+      });
       const transactions = await Transaction.findAll({
         where: {
           WalletId: walletData.id,
@@ -21,7 +21,7 @@ class Controller {
         data: transactions,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -30,20 +30,20 @@ class Controller {
     try {
       const { amount, imageReceipt, transactionDate, WalletId, CategoryId } =
         req.body;
-      const id = +req.user.id
+      const id = +req.user.id;
 
       const walletData = await Wallet.findOne({
         where: {
-          UserId: id
+          UserId: id,
         },
         transaction: t,
-      })
+      });
 
       const data = {
         amount: +amount,
         transactionDate,
         imageReceipt,
-        WalletId: walletData.id ,
+        WalletId: walletData.id,
         CategoryId,
       };
 
@@ -87,7 +87,7 @@ class Controller {
       });
     } catch (err) {
       await t.rollback();
-      next(err)
+      next(err);
     }
   }
 
@@ -95,12 +95,12 @@ class Controller {
     const t = await sequelize.transaction();
     try {
       const { id } = req.params;
-      const userId = +req.user.id
+      const userId = +req.user.id;
       const walletData = await Wallet.findOne({
         where: {
-          UserId: userId
-        }
-      })
+          UserId: userId,
+        },
+      });
       const { amount, imageReceipt, transactionDate, WalletId, CategoryId } =
         req.body;
 
@@ -116,7 +116,7 @@ class Controller {
         include: [{ model: Category, attributes: ["name", "type"] }],
       });
 
-      if (!oldTransaction) throw {name: "TRANSACTION_NOT_FOUND"}
+      if (!oldTransaction) throw { name: "TRANSACTION_NOT_FOUND" };
 
       await Transaction.update(
         data,
@@ -184,7 +184,7 @@ class Controller {
       });
     } catch (err) {
       await t.rollback();
-      next(err)
+      next(err);
     }
   }
 
@@ -197,7 +197,7 @@ class Controller {
         include: [{ model: Category, attributes: ["name", "type"] }],
       });
 
-      if (!transaction) throw {name: "TRANSACTION_NOT_FOUND"}
+      if (!transaction) throw { name: "TRANSACTION_NOT_FOUND" };
 
       const wallet = await Wallet.findByPk(transaction.WalletId, {
         transaction: t,
@@ -235,7 +235,7 @@ class Controller {
       });
     } catch (err) {
       await t.rollback();
-      next(err)
+      next(err);
     }
   }
 
@@ -272,7 +272,7 @@ class Controller {
       let ratioNeeds = 0;
       let ratioWants = 0;
       let ratioSaving = 0;
-      let ratioExpenses = 0
+      let ratioExpenses = 0;
 
       if (transactions.length) {
         transactions.forEach((el) => {
@@ -343,7 +343,7 @@ class Controller {
           ratioNeeds = (totalNeeds / total) * 100;
           ratioWants = (totalWants / total) * 100;
           ratioSaving = 0;
-          ratioExpenses = 0
+          ratioExpenses = 0;
         }
       }
 
@@ -357,25 +357,35 @@ class Controller {
         moneyStatus = "warning";
       }
 
-      let expense = {}
-      let income = {}
+      let expense = {};
+      let income = {};
 
       for (let i = 0; i < monthlyTransactions.length; i++) {
-        if (monthlyTransactions[i].Category.name === 'Expense') {
-          if (!expense[monthlyTransactions[i].Category.type]) expense[monthlyTransactions[i].Category.type] = {total: 0, percentage: 0}
-          expense[monthlyTransactions[i].Category.type].total += monthlyTransactions[i].amount
+        if (monthlyTransactions[i].Category.name === "Expense") {
+          if (!expense[monthlyTransactions[i].Category.type])
+            expense[monthlyTransactions[i].Category.type] = {
+              total: 0,
+              percentage: 0,
+            };
+          expense[monthlyTransactions[i].Category.type].total +=
+            monthlyTransactions[i].amount;
         } else {
-          if (!income[monthlyTransactions[i].Category.type]) income[monthlyTransactions[i].Category.type] = {total: 0, percentage: 0}
-          income[monthlyTransactions[i].Category.type].total += monthlyTransactions[i].amount
+          if (!income[monthlyTransactions[i].Category.type])
+            income[monthlyTransactions[i].Category.type] = {
+              total: 0,
+              percentage: 0,
+            };
+          income[monthlyTransactions[i].Category.type].total +=
+            monthlyTransactions[i].amount;
         }
       }
 
       for (const key in expense) {
-        expense[key].percentage = (expense[key].total / totalExpenses) *100
+        expense[key].percentage = (expense[key].total / totalExpenses) * 100;
       }
 
       for (const key in income) {
-        income[key].percentage = (income[key].total / totalIncome) *100
+        income[key].percentage = (income[key].total / totalIncome) * 100;
       }
 
       res.status(200).json({
@@ -384,7 +394,7 @@ class Controller {
         totalExpenses,
         totalIncome,
         expense,
-        income
+        income,
       });
     } catch (err) {
       next(err);

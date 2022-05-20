@@ -32,14 +32,12 @@ class ConsultantController {
 
       if (!consultant) throw { name: "CONSULTANT_NOT_FOUND" };
 
-      await User.destroy(
-        {
-          where: {
-            id,
-          },
-          transaction: t,
-        }
-      );
+      await User.destroy({
+        where: {
+          id,
+        },
+        transaction: t,
+      });
 
       await t.commit();
       res.status(200).json(consultant);

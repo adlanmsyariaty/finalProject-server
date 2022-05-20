@@ -85,8 +85,6 @@ beforeAll(async () => {
   });
 });
 
-
-
 afterAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
   await Wallet.destroy({
@@ -582,4 +580,30 @@ describe("DELETE /users/transactions/:id", () => {
       expect(res.body).toHaveProperty("message", "Transaction not found");
     });
   });
+});
+
+describe("GET /categories", () => {
+  describe("GET /categories -- success case to get categories", () => {
+    test("should return  categories data", async () => {
+      const res = await request(app)
+        .get("/categories")
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("incomeCategories", expect.any(Array));
+      expect(res.body.data).toHaveProperty("expenseCategories", expect.any(Array));
+    });
+  });
+
+  // describe("DELETE /users/transactions/:id -- fail case to delete transaction", () => {
+  //   test("should return new transaction data", async () => {
+  //     const res = await request(app)
+  //       .delete("/users/transactions/10")
+  //       .set("access_token", validTokenUser);
+  //     expect(res.status).toBe(404);
+  //     expect(res.body).toEqual(expect.any(Object));
+  //     expect(res.body).toHaveProperty("message", expect.any(String));
+  //     expect(res.body).toHaveProperty("message", "Transaction not found");
+  //   });
+  // });
 });
