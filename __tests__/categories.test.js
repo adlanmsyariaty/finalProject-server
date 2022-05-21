@@ -1,7 +1,10 @@
 const request = require("supertest");
 const app = require("../app.js");
-const { User, Category, Wallet } = require("../models");
+const { User, Category, Wallet, History } = require("../models");
 const { tokenGenerator } = require("../helpers/jwt");
+
+let validTokenUser;
+let validTokenUser1;
 
 beforeAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
@@ -129,3 +132,30 @@ describe("GET /users/transactions/report", () => {
     });
   });
 });
+
+describe("GET /users/histories", () => {
+  describe("GET /users/histories -- fail case to get histories chat", () => {
+    jest.spyOn(History, "findAll").mockRejectedValue("Error");
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/histories")
+        .set("access_token", validTokenUser)
+      expect(res.status).toBe(500);
+      expect(res.body).toHaveProperty("message", expect.any(String));
+    });
+  });
+})
+
+describe("GET /users/histories", () => {
+  describe("GET /users/histories -- fail case to get histories chat", () => {
+    jest.spyOn(History, "findAll").mockRejectedValue("Error");
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/histories/3")
+        .set("access_token", validTokenUser)
+      expect(res.status).toBe(500);
+      expect(res.body).toHaveProperty("message", expect.any(String));
+    });
+  });
+})
+
