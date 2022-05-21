@@ -15,7 +15,7 @@ class Controller {
         where: {
           WalletId: walletData.id,
         },
-        include: [{ model: Category, attributes: ["name", "type"] }],
+        include: [{ model: Category, attributes: ["name", "type", "icon"] }],
       });
 
       res.status(200).json({
@@ -114,7 +114,7 @@ class Controller {
       };
 
       const oldTransaction = await Transaction.findByPk(id, {
-        include: [{ model: Category, attributes: ["name", "type"] }],
+        include: [{ model: Category, attributes: ["name", "type", "icon"] }],
       });
 
       if (!oldTransaction) throw { name: "TRANSACTION_NOT_FOUND" };
@@ -195,7 +195,7 @@ class Controller {
       const { id } = req.params;
 
       const transaction = await Transaction.findByPk(id, {
-        include: [{ model: Category, attributes: ["name", "type"] }],
+        include: [{ model: Category, attributes: ["name", "type", "icon"] }],
       });
 
       if (!transaction) throw { name: "TRANSACTION_NOT_FOUND" };
@@ -251,7 +251,7 @@ class Controller {
         },
       });
       const transactions = await Transaction.findAll({
-        include: [{ model: Category, attributes: ["name", "type"] }],
+        include: [{ model: Category, attributes: ["name", "type", "icon"] }],
         where: { WalletId: walletData.id },
       });
 
