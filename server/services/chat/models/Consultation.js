@@ -35,12 +35,8 @@ class Consultation {
       const user = await this.consultation().updateOne(
         { _id },
         {
-          $push: {
-            messages: {
-              name: data.name,
-              text: data.text,
-              date: data.date,
-            },
+          $set: {
+            messages: data
           },
         }
       );
