@@ -10,6 +10,7 @@ const consultantController = require("../controllers/consultantController.js");
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
 router.use(userAuthentication);
+router.get("/detail", userController.userDetail);
 router.use("/consultants", consultantController.consultantList);
 router.use("/histories", historyRouter);
 router.use("/transactions", transactionRouter);

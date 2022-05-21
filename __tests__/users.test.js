@@ -510,6 +510,22 @@ describe("GET /consultants", () => {
   });
 });
 
+describe("GET /users/detail", () => {
+  describe("GET /users/detail -- success case to get user detail data", () => {
+    test("should return user detail data", async () => {
+      const res = await request(app)
+        .get("/users/detail")
+        .set("access_token", validTokenUser);
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+      expect(res.body).toHaveProperty("name", expect.any(String));
+      expect(res.body).toHaveProperty("username", expect.any(String));
+      expect(res.body).toHaveProperty("email", expect.any(String));
+    });
+  });
+});
+
 describe("DELETE /consultants", () => {
   describe("DELETE /consultants -- success case to delete consultant by id", () => {
     test("should return consultant list", async () => {

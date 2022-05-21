@@ -458,7 +458,7 @@ describe("PUT /users/transactions/:id", () => {
 
 describe("GET /users/transactions/report", () => {
   describe("GET /users/transactions/report -- success case to get report", () => {
-    test("should return new transaction data", async () => {
+    test("should return report transaction data", async () => {
       const res = await request(app)
         .get("/users/transactions/report")
         .set("access_token", validTokenUser);
@@ -482,7 +482,7 @@ describe("GET /users/transactions/report", () => {
       expect(res.body.income).toEqual(expect.any(Object));
     });
 
-    test("should return new transaction data", async () => {
+    test("should return report transaction data", async () => {
       const res = await request(app)
         .get("/users/transactions/report")
         .set("access_token", validTokenUser1);
@@ -534,7 +534,7 @@ describe("GET /users/transactions/report", () => {
 
 describe("DELETE /users/transactions/:id", () => {
   describe("DELETE /users/transactions/:id -- success case to delete transaction", () => {
-    test("should return new transaction data", async () => {
+    test("should return deleted transaction data", async () => {
       const res = await request(app)
         .delete("/users/transactions/1")
         .set("access_token", validTokenUser);
@@ -551,7 +551,7 @@ describe("DELETE /users/transactions/:id", () => {
       expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
     });
 
-    test("should return new transaction data", async () => {
+    test("should return deleted transaction data", async () => {
       const res = await request(app)
         .delete("/users/transactions/2")
         .set("access_token", validTokenUser);
@@ -570,7 +570,7 @@ describe("DELETE /users/transactions/:id", () => {
   });
 
   describe("DELETE /users/transactions/:id -- fail case to delete transaction", () => {
-    test("should return new transaction data", async () => {
+    test("should return error message data", async () => {
       const res = await request(app)
         .delete("/users/transactions/10")
         .set("access_token", validTokenUser);

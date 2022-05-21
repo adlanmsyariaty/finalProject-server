@@ -77,6 +77,26 @@ class UserController {
       next(error);
     }
   }
+
+  static async userDetail(req, res, next) {
+    const t = await sequelize.transaction();
+    try {
+      const id = +req.user.id
+
+      const user = await User.findOne({
+        where: {
+          id
+        },
+        transaction: t
+      })
+
+      await t.commit();
+      res.status(200).json(user);
+    } catch (error) {
+      await t.rollback();
+      next(error);
+    }
+  }
 }
 
 module.exports = UserController;

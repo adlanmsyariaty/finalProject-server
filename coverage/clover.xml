@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653078255522" clover="3.2.0">
-  <project timestamp="1653078255522" name="All files">
-    <metrics statements="476" coveredstatements="473" conditionals="171" coveredconditionals="152" methods="41" coveredmethods="41" elements="688" coveredelements="666" complexity="0" loc="476" ncloc="476" packages="6" files="27" classes="27"/>
+<coverage generated="1653111019818" clover="3.2.0">
+  <project timestamp="1653111019818" name="All files">
+    <metrics statements="485" coveredstatements="480" conditionals="171" coveredconditionals="152" methods="42" coveredmethods="42" elements="698" coveredelements="674" complexity="0" loc="485" ncloc="485" packages="6" files="27" classes="27"/>
     <package name="m-cure-server">
       <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="2" methods="0" coveredmethods="0"/>
       <file name="app.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\app.js">
@@ -23,7 +23,7 @@
       </file>
     </package>
     <package name="m-cure-server.controllers">
-      <metrics statements="276" coveredstatements="274" conditionals="130" coveredconditionals="116" methods="19" coveredmethods="19"/>
+      <metrics statements="284" coveredstatements="280" conditionals="130" coveredconditionals="116" methods="20" coveredmethods="20"/>
       <file name="adminController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\controllers\adminController.js">
         <metrics statements="38" coveredstatements="38" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
         <line num="1" count="4" type="stmt"/>
@@ -278,7 +278,7 @@
         <line num="405" count="4" type="stmt"/>
       </file>
       <file name="userController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\controllers\userController.js">
-        <metrics statements="31" coveredstatements="31" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <metrics statements="39" coveredstatements="37" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -309,7 +309,15 @@
         <line num="71" count="1" type="stmt"/>
         <line num="76" count="4" type="stmt"/>
         <line num="77" count="4" type="stmt"/>
-        <line num="82" count="4" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="102" count="4" type="stmt"/>
       </file>
       <file name="walletController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\controllers\walletController.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -340,7 +348,7 @@
         <line num="4" count="4" type="stmt"/>
         <line num="5" count="13" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
-        <line num="9" count="46" type="stmt"/>
+        <line num="9" count="47" type="stmt"/>
         <line num="12" count="4" type="stmt"/>
       </file>
     </package>
@@ -361,14 +369,14 @@
         <line num="17" count="13" type="stmt"/>
         <line num="19" count="2" type="stmt"/>
         <line num="23" count="4" type="stmt"/>
-        <line num="24" count="31" type="stmt"/>
-        <line num="25" count="31" type="stmt"/>
-        <line num="26" count="31" type="stmt"/>
-        <line num="27" count="31" type="stmt"/>
-        <line num="28" count="31" type="cond" truecount="4" falsecount="0"/>
+        <line num="24" count="32" type="stmt"/>
+        <line num="25" count="32" type="stmt"/>
+        <line num="26" count="32" type="stmt"/>
+        <line num="27" count="32" type="stmt"/>
+        <line num="28" count="32" type="cond" truecount="4" falsecount="0"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="31" count="30" type="stmt"/>
-        <line num="36" count="30" type="stmt"/>
+        <line num="31" count="31" type="stmt"/>
+        <line num="36" count="31" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="42" count="4" type="stmt"/>
       </file>
@@ -474,7 +482,7 @@
       </file>
     </package>
     <package name="m-cure-server.routes">
-      <metrics statements="74" coveredstatements="74" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="75" coveredstatements="75" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="categoryRouter.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\routes\categoryRouter.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="stmt"/>
@@ -550,7 +558,7 @@
         <line num="15" count="4" type="stmt"/>
       </file>
       <file name="userRouter.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\routes\userRouter.js">
-        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -566,7 +574,8 @@
         <line num="14" count="4" type="stmt"/>
         <line num="15" count="4" type="stmt"/>
         <line num="16" count="4" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
       </file>
       <file name="walletRouter.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\routes\walletRouter.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
