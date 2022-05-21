@@ -1,4 +1,5 @@
 const { Transaction, Wallet, Category, sequelize } = require("../models");
+const { Op } = require("sequelize");
 
 class Controller {
   static async fetchTransactions(req, res, next) {
@@ -404,10 +405,16 @@ class Controller {
   static async detailTransaction(req, res, next) {
     try {
       const { id } = req.params;
+      const  userId = +req.user.id
+      const wallet = await Wallet.findOne({
+        where: {
+          UserId: userId
+        }
+      })
 
       const transaction = await Transaction.findOne({
         where: {
-          id
+          [Op.and]: [{ WalletId: wallet.id }, { id: id }],
         },
         include: [Category]
       });
