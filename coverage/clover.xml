@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653153258333" clover="3.2.0">
-  <project timestamp="1653153258333" name="All files">
-    <metrics statements="506" coveredstatements="501" conditionals="173" coveredconditionals="154" methods="45" coveredmethods="45" elements="724" coveredelements="700" complexity="0" loc="506" ncloc="506" packages="6" files="28" classes="28"/>
+<coverage generated="1653155560225" clover="3.2.0">
+  <project timestamp="1653155560225" name="All files">
+    <metrics statements="506" coveredstatements="500" conditionals="173" coveredconditionals="154" methods="45" coveredmethods="44" elements="724" coveredelements="698" complexity="0" loc="506" ncloc="506" packages="6" files="28" classes="28"/>
     <package name="m-cure-server">
-      <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="25" coveredstatements="24" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="1"/>
       <file name="app.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\app.js">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="2" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="cond" truecount="1" falsecount="1"/>
@@ -22,18 +22,18 @@
         <line num="18" count="4" type="stmt"/>
       </file>
       <file name="socketConfig.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\socketConfig.js">
-        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
       </file>
     </package>
     <package name="m-cure-server.controllers">
