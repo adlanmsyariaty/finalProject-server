@@ -337,6 +337,37 @@ describe("GET /users/transactions", () => {
   });
 });
 
+describe("GET /users/transactions", () => {
+  describe("GET /users/transactions -- success case to get transaction", () => {
+    test("should return new transaction data", async () => {
+      const res = await request(app)
+        .get("/users/transactions/1")
+        .set("access_token", validTokenUser);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("id");
+      expect(res.body.data).toHaveProperty("id", expect.any(Number));
+      expect(res.body.data).toHaveProperty("amount");
+      expect(res.body.data).toHaveProperty("amount", expect.any(Number));
+      expect(res.body.data).toHaveProperty("WalletId");
+      expect(res.body.data).toHaveProperty("WalletId", expect.any(Number));
+      expect(res.body.data).toHaveProperty("CategoryId");
+      expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
+    });
+  });
+
+  describe("GET /users/transactions -- fail case to get transaction", () => {
+    test("should return error message data", async () => {
+      const res = await request(app)
+        .get("/users/transactions/10")
+        .set("access_token", validTokenUser);
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty("message", "Transaction not found")
+    });
+  });
+});
+
 describe("PUT /users/transactions/:id", () => {
   describe("PUT /users/transactions/:id -- success case to update transaction data", () => {
     test("should return updated transaction data", async () => {
@@ -594,16 +625,4 @@ describe("GET /categories", () => {
       expect(res.body.data).toHaveProperty("expenseCategories", expect.any(Array));
     });
   });
-
-  // describe("DELETE /users/transactions/:id -- fail case to delete transaction", () => {
-  //   test("should return new transaction data", async () => {
-  //     const res = await request(app)
-  //       .delete("/users/transactions/10")
-  //       .set("access_token", validTokenUser);
-  //     expect(res.status).toBe(404);
-  //     expect(res.body).toEqual(expect.any(Object));
-  //     expect(res.body).toHaveProperty("message", expect.any(String));
-  //     expect(res.body).toHaveProperty("message", "Transaction not found");
-  //   });
-  // });
 });

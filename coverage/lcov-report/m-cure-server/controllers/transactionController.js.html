@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>141/150</span>
+                <span class='fraction'>150/150</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.45% </span>
+                <span class="strong">87.27% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>94/110</span>
+                <span class='fraction'>96/110</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>138/146</span>
+                <span class='fraction'>146/146</span>
             </div>
         
             
@@ -901,29 +901,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1333,30 +1333,30 @@ class Controller {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  st</span>atic async detailTransaction(req, res, next) {
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-      const  userId = <span class="cstat-no" title="statement not covered" >+req.user.id</span>
-      const wallet = <span class="cstat-no" title="statement not covered" >await Wallet.findOne({</span>
+  static async detailTransaction(req, res, next) {
+    try {
+      const { id } = req.params;
+      const  userId = +req.user.id
+      const wallet = await Wallet.findOne({
         where: {
           UserId: userId
         }
       })
 &nbsp;
-      const transaction = <span class="cstat-no" title="statement not covered" >await Transaction.findOne({</span>
+      const transaction = await Transaction.findOne({
         where: {
           [Op.and]: [{ WalletId: wallet.id }, { id: id }],
         },
         include: [Category]
       });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      if(!transaction) <span class="cstat-no" title="statement not covered" >throw {name: "TRANSACTION_NOT_FOUND"}</span></span>
+      if(!transaction) throw {name: "TRANSACTION_NOT_FOUND"}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      res.status(200).json({</span>
+      res.status(200).json({
         data: transaction,
       });
     } catch (err) {
-<span class="cstat-no" title="statement not covered" >      next(err);</span>
+      next(err);
     }
   }
 }
@@ -1369,7 +1369,7 @@ module.exports = Controller;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat May 21 2022 19:31:46 GMT+0700 (Western Indonesia Time)
+                at Sat May 21 2022 21:55:05 GMT+0700 (Western Indonesia Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
