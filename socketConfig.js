@@ -12,12 +12,13 @@ const io = new Server(server, {
   },
 })
 
-io.on("connection", (socket) => {
+io.on('connection', socket => {
   console.log(`User connected: ${socket.id}`)
 
-  socket.on("send_message", function (data) {
-    socket.broadcast.emit("receive_message", data)
-  })
-})
+  socket.on("send_message", (data) => {
+    io.emit("receive_message", data);
+  });
+
+});
 
 module.exports = io;
