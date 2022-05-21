@@ -400,6 +400,27 @@ class Controller {
       next(err);
     }
   }
+
+  static async detailTransaction(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const transaction = await Transaction.findOne({
+        where: {
+          id
+        },
+        include: [Category]
+      });
+
+      if(!transaction) throw {name: "TRANSACTION_NOT_FOUND"}
+
+      res.status(200).json({
+        data: transaction,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = Controller;

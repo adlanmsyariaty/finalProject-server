@@ -8,6 +8,8 @@ router.post("/", Controller.createTransaction);
 
 router.get("/report", Controller.reportTransaction);
 
+router.get("/:id", Controller.detailTransaction);
+
 router.put("/:id", Controller.editTransaction);
 
 router.delete("/:id", Controller.deleteTransaction);
