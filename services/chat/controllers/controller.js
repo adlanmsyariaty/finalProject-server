@@ -26,9 +26,7 @@ class Controller {
   static async updateConsultation(req, res) {
     try {
       const { id } = req.params;
-      const { name, text } = req.body;
-
-      const data = { name, text, date: new Date() };
+      const data = req.body
       const consultation = await Consultation.update(id, data);
       res.status(200).json({
         data: consultation,
