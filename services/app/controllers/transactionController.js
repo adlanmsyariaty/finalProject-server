@@ -16,6 +16,7 @@ class Controller {
           WalletId: walletData.id,
         },
         include: [{ model: Category, attributes: ["name", "type", "icon"] }],
+        order: [["transactionDate", "DESC"]]
       });
 
       res.status(200).json({
