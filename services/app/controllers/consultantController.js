@@ -111,7 +111,7 @@ class ConsultantController {
       if (!patchedConsultant) throw { name: "CONSULTANT_NOT_FOUND" };
 
       await t.commit();
-      res.status(200).json(patchedConsultant);
+      res.status(200).json(patchedConsultant[1][0]);
     } catch (error) {
       await t.rollback();
       next(error);
