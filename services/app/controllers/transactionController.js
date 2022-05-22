@@ -292,7 +292,7 @@ class Controller {
             ) {
               totalIncome += el.amount;
             } else if (
-              el.Category.type === "Food & Baverage" ||
+              el.Category.type === "Food & Beverage" ||
               el.Category.type === "Transportation" ||
               el.Category.type === "Rentals" ||
               el.Category.type === "Water Bill" ||
@@ -319,8 +319,6 @@ class Controller {
               el.Category.type === "Makeup" ||
               el.Category.type === "Gifts & Donations" ||
               el.Category.type === "Streaming Services" ||
-              el.Category.type === "Other Utility Bills" ||
-              el.Category.type === "Home Maintenance" ||
               el.Category.type === "Fun Money" ||
               el.Category.type === "Pay Interest" ||
               el.Category.type === "Outgoing Transfer"
