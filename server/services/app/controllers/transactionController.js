@@ -253,6 +253,7 @@ class Controller {
       const transactions = await Transaction.findAll({
         include: [{ model: Category, attributes: ["name", "type", "icon"] }],
         where: { WalletId: walletData.id },
+        order: [['transactionDate', 'DESC']]
       });
 
       const date = new Date();
