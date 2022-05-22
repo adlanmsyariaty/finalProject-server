@@ -25,7 +25,26 @@ const userAuthentication = async (req, res, next) => {
     const { access_token } = req.headers;
     const payload = payloadReader(access_token);
     const selectedUser = await User.findByPk(payload.id);
-    if (!selectedUser || selectedUser.role === "admin") {
+    if (!selectedUser || selectedUser.role !== "user") {
+      throw { name: "Unauthorized", statusCode: 401 };
+    } else {
+      req.user = {
+        id: selectedUser.id,
+        role: selectedUser.role,
+      };
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const consultantAuthentication = async (req, res, next) => {
+  try {
+    const { access_token } = req.headers;
+    const payload = payloadReader(access_token);
+    const selectedUser = await User.findByPk(payload.id);
+    if (!selectedUser || selectedUser.role !== "consultant") {
       throw { name: "Unauthorized", statusCode: 401 };
     } else {
       req.user = {
@@ -42,4 +61,5 @@ const userAuthentication = async (req, res, next) => {
 module.exports = {
   adminAuthentication,
   userAuthentication,
+  consultantAuthentication
 };

@@ -7,13 +7,14 @@ class UserController {
   static async registerUser(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const { name, username, email, password } = req.body;
+      const { name, username, email, password, imageProfile } = req.body;
       const newUser = await User.create(
         {
           name,
           username,
           email,
           password,
+          imageProfile,
           role: "user",
         },
         {
@@ -47,7 +48,7 @@ class UserController {
 
       const selectedUser = await User.findOne({
         where: {
-          [Op.and]: [{ email: email }],
+          [Op.and]: [{ email: email }, { role: "user" }],
         },
         transaction: t,
       });
@@ -81,14 +82,14 @@ class UserController {
   static async userDetail(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const id = +req.user.id
+      const id = +req.user.id;
 
       const user = await User.findOne({
         where: {
-          id
+          id,
         },
-        transaction: t
-      })
+        transaction: t,
+      });
 
       await t.commit();
       res.status(200).json(user);

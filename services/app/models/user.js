@@ -88,7 +88,13 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    imageProfile: {
+      type: DataTypes.STRING,
+    },
+    videoCode: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     hooks: {
