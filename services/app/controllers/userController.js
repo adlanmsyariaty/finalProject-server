@@ -47,7 +47,7 @@ class UserController {
 
       const selectedUser = await User.findOne({
         where: {
-          [Op.and]: [{ email: email }, { role: "user" }],
+          [Op.and]: [{ email: email }],
         },
         transaction: t,
       });
