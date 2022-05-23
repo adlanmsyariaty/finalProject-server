@@ -21,6 +21,40 @@ class ConsultantController {
     }
   }
 
+  static async patchConsultantStatus(req, res, next) {
+    const t = await sequelize.transaction();
+    try {
+      const id = +req.params.id
+      let consultant = await User.findOne({
+        where: {
+          [Op.and]: [{ id: id }, { role: "consultant" }],
+        },
+        transaction: t
+      })
+
+      if (!consultant) throw { name: "CONSULTANT_NOT_FOUND" };
+
+      await User.update(
+        {
+          status: !consultant.status
+        },
+        {
+          where: {
+            id
+          },
+          returning: true,
+          transaction: t,
+        }
+      );
+
+      await t.commit();
+      res.status(200).json(consultant);
+    } catch (error) {
+      await t.rollback();
+      next(error);
+    }
+  }
+
   static async deleteConsultant(req, res, next) {
     const t = await sequelize.transaction();
     try {

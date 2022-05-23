@@ -350,11 +350,11 @@ class Controller {
       let moneyStatus = "";
 
       if (ratioNeeds <= 50 && ratioWants <= 30) {
-        moneyStatus = "save";
+        moneyStatus = "Safe";
       } else if (ratioExpenses >= 100) {
-        moneyStatus = "danger";
+        moneyStatus = "Danger";
       } else {
-        moneyStatus = "warning";
+        moneyStatus = "Warning";
       }
 
       let expense = {};

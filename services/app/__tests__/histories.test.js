@@ -6,7 +6,6 @@ const { tokenGenerator } = require("../helpers/jwt");
 let validTokenUser;
 let validTokenConsultant;
 let validTokenConsultant1;
-let invalidToken = "askjijniudsnhfiusjhndiufjhsuih384798384";
 
 beforeAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
@@ -80,14 +79,14 @@ beforeAll(async () => {
   });
 });
 
-// afterAll(async () => {
-//   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
-//   await Wallet.destroy({
-//     truncate: true,
-//     cascade: true,
-//     restartIdentity: true,
-//   });
-// });
+afterAll(async () => {
+  await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
+  await Wallet.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+});
 
 describe("POST /users/histories", () => {
   describe("POST /users/histories -- success case to create histories chat", () => {
