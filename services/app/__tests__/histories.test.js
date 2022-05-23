@@ -181,16 +181,3 @@ describe("GET /users/histories/:consultantId", () => {
     });
   });
 });
-
-describe("GET /users/histories/open", () => {
-  describe("GET /users/histories/open -- success case to get histories for open status by consultantId", () => {
-    test("should return histories data", async () => {
-      const res = await request(app)
-        .get("/users/histories/open")
-        .set("access_token", validTokenConsultant);
-      expect(res.status).toBe(200);
-      expect(res.body).toEqual(expect.any(Object));
-      expect(res.body.data).toEqual(expect.any(Array));
-    });
-  });
-});

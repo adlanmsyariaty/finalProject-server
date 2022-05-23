@@ -319,6 +319,7 @@ class Controller {
               el.Category.type === "Streaming Services" ||
               el.Category.type === "Fun Money" ||
               el.Category.type === "Pay Interest" ||
+              el.Category.type === "Investment" ||
               el.Category.type === "Outgoing Transfer"
             ) {
               totalWants += el.amount;
