@@ -697,6 +697,102 @@ describe("GET /categories", () => {
       expect(res.body.data).toHaveProperty("CategoryId");
       expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
     });
+
+    test("should return new transaction data", async () => {
+      const NewTransaction = {
+        amount: 5000000,
+        imageReceipt: "this is for image recipt 300",
+        transactionDate: "2022-05-19 18:54:33.783 +00:00",
+        CategoryId: 3,
+      };
+      const res = await request(app)
+        .post("/users/transactions")
+        .set("access_token", validTokenUser3)
+        .send(NewTransaction);
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("id");
+      expect(res.body.data).toHaveProperty("id", expect.any(Number));
+      expect(res.body.data).toHaveProperty("amount");
+      expect(res.body.data).toHaveProperty("amount", expect.any(Number));
+      expect(res.body.data).toHaveProperty("WalletId");
+      expect(res.body.data).toHaveProperty("WalletId", expect.any(Number));
+      expect(res.body.data).toHaveProperty("CategoryId");
+      expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
+    });
+
+    test("should return new transaction data", async () => {
+      const NewTransaction = {
+        amount: 5000000,
+        imageReceipt: "this is for image recipt 300",
+        transactionDate: "2022-05-19 18:54:33.783 +00:00",
+        CategoryId: 4,
+      };
+      const res = await request(app)
+        .post("/users/transactions")
+        .set("access_token", validTokenUser3)
+        .send(NewTransaction);
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("id");
+      expect(res.body.data).toHaveProperty("id", expect.any(Number));
+      expect(res.body.data).toHaveProperty("amount");
+      expect(res.body.data).toHaveProperty("amount", expect.any(Number));
+      expect(res.body.data).toHaveProperty("WalletId");
+      expect(res.body.data).toHaveProperty("WalletId", expect.any(Number));
+      expect(res.body.data).toHaveProperty("CategoryId");
+      expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
+    });
+
+    test("should return new transaction data", async () => {
+      const NewTransaction = {
+        amount: 5000000,
+        imageReceipt: "this is for image recipt 300",
+        transactionDate: "2022-05-19 18:54:33.783 +00:00",
+        CategoryId: 1,
+      };
+      const res = await request(app)
+        .post("/users/transactions")
+        .set("access_token", validTokenUser3)
+        .send(NewTransaction);
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("id");
+      expect(res.body.data).toHaveProperty("id", expect.any(Number));
+      expect(res.body.data).toHaveProperty("amount");
+      expect(res.body.data).toHaveProperty("amount", expect.any(Number));
+      expect(res.body.data).toHaveProperty("WalletId");
+      expect(res.body.data).toHaveProperty("WalletId", expect.any(Number));
+      expect(res.body.data).toHaveProperty("CategoryId");
+      expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
+    });
+
+    test("should return new transaction data", async () => {
+      const NewTransaction = {
+        amount: 5000000,
+        imageReceipt: "this is for image recipt 300",
+        transactionDate: "2022-05-19 18:54:33.783 +00:00",
+        CategoryId: 2,
+      };
+      const res = await request(app)
+        .post("/users/transactions")
+        .set("access_token", validTokenUser3)
+        .send(NewTransaction);
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Object));
+      expect(res.body.data).toHaveProperty("id");
+      expect(res.body.data).toHaveProperty("id", expect.any(Number));
+      expect(res.body.data).toHaveProperty("amount");
+      expect(res.body.data).toHaveProperty("amount", expect.any(Number));
+      expect(res.body.data).toHaveProperty("WalletId");
+      expect(res.body.data).toHaveProperty("WalletId", expect.any(Number));
+      expect(res.body.data).toHaveProperty("CategoryId");
+      expect(res.body.data).toHaveProperty("CategoryId", expect.any(Number));
+    });
   });
 
   describe("PUT /users/transactions/:id -- success case to update transaction data", () => {

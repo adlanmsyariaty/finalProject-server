@@ -53,9 +53,7 @@ class Controller {
         transaction: t,
       });
 
-      const checkCategory = await Category.findByPk(CategoryId, {
-        transaction: t,
-      });
+      const checkCategory = await Category.findByPk(CategoryId);
 
       const wallet = await Wallet.findByPk(walletData.id, { transaction: t });
 

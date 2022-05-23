@@ -2,9 +2,9 @@ const express = require("express");
 const Controller = require("../controllers/historyController");
 const router = express.Router();
 
-router.get("/", Controller.fetchHistories);
+router.get("/", Controller.fetchUserHistories);
 router.post("/", Controller.createHistory);
 router.get("/:consultantId", Controller.fetchHistory);
-
+router.patch("/:id", Controller.patchHistory);
 
 module.exports = router;

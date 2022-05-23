@@ -33,7 +33,9 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    MongoConsultationId: DataTypes.STRING
+    MongoConsultationId: DataTypes.STRING,
+    consultationStatus: DataTypes.STRING,
+    consultationType: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'History',
