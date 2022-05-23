@@ -15,8 +15,14 @@ class Controller {
         transaction: t,
       });
 
+      let messages = []
+      for (let i = 0; i < histories.length; i++) {
+        const response = await axios.get(`https://m-cure-mongo.herokuapp.com/consultation/${histories[i].MongoConsultationId}`)
+        messages.push(response.data.messages)
+      }
+
       await t.commit();
-      res.status(200).json({ data: histories });
+      res.status(200).json({ data: histories, messages });
     } catch (error) {
       await t.rollback();
       next(error);
@@ -34,8 +40,6 @@ class Controller {
         },
         transaction: t,
       });
-
-
 
       await t.commit();
       res.status(200).json({ data: histories });
