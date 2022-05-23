@@ -32,9 +32,10 @@ class Controller {
         where: {
           [Op.and]: [{ ConsultantId: id }, { consultationStatus: "close" }],
         },
-        include: [User],
         transaction: t,
       });
+
+
 
       await t.commit();
       res.status(200).json({ data: histories });

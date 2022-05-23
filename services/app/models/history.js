@@ -14,9 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       History.belongsTo(models.User, {
         foreignKey: 'UserId'
       })
-      History.belongsTo(models.User, {
-        foreignKey: 'ConsultantId'
-      })
     }
   }
   History.init({
