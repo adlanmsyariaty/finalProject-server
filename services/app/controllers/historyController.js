@@ -12,7 +12,7 @@ class Controller {
         where: {
           [Op.and]: [{ UserId: id }, { consultationStatus: "close" }],
         },
-        order: [["createdAt", "ASC"]],
+        order: [["createdAt", "DESC"]],
         transaction: t,
       });
 
