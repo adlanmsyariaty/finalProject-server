@@ -18,6 +18,7 @@ class Controller {
       let messages = []
       for (let i = 0; i < histories.length; i++) {
         const response = await axios.get(`https://m-cure-mongo.herokuapp.com/consultation/${histories[i].MongoConsultationId}`)
+        console.log(response.data)
         messages.push(response.data.messages)
       }
 
