@@ -81,8 +81,15 @@ class ConsultantController {
         }
       );
 
+      let newConsultant = await User.findOne({
+        where: {
+          [Op.and]: [{ id: id }, { role: "consultant" }],
+        },
+        transaction: t
+      })
+
       await t.commit();
-      res.status(200).json(consultant);
+      res.status(200).json(newConsultant);
     } catch (error) {
       await t.rollback();
       next(error);

@@ -61,7 +61,7 @@ beforeAll(async () => {
     },
   });
 
-  await Wallet.bulkCreate([{ UserId: 2 }, { UserId: 4 }]);
+  await Wallet.bulkCreate([{ UserId: 2 }]);
 
   validTokenUser = tokenGenerator({
     id: newUser.id,
@@ -155,19 +155,6 @@ describe("POST /users/histories", () => {
   });
 });
 
-describe("GET /users/histories", () => {
-  describe("GET /users/histories -- success case to get histories chat", () => {
-    test("should return histories data", async () => {
-      const res = await request(app)
-        .get("/users/histories")
-        .set("access_token", validTokenUser);
-      expect(res.status).toBe(200);
-      expect(res.body).toEqual(expect.any(Object));
-      expect(res.body.data).toEqual(expect.any(Array));
-    });
-  });
-});
-
 describe("PATCH /users/consultants/histories/close", () => {
   describe("PATCH /users/consultants/histories/close -- success case to get histories chat", () => {
     test("should return histories data", async () => {
@@ -187,23 +174,21 @@ describe("PATCH /users/consultants/histories/close", () => {
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body.data).toEqual(expect.any(Array));
     });
+  });
+});
 
+describe("PATCH /users/consultants/histories/close", () => {
+  describe("PATCH /users/consultants/histories/close -- success case to get histories chat", () => {
     test("should return histories data", async () => {
       const res = await request(app)
-        .get("/users/consultants/histories/open")
+        .patch("/users/consultants/status")
         .set("access_token", validTokenConsultant);
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
-      expect(res.body.data).toEqual(expect.any(Array));
-    });
-
-    test("should return histories data", async () => {
-      const res = await request(app)
-        .get("/users/consultants/histories/open")
-        .set("access_token", validTokenConsultant1);
-      expect(res.status).toBe(200);
-      expect(res.body).toEqual(expect.any(Object));
-      expect(res.body.data).toEqual(expect.any(Array));
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+      expect(res.body).toHaveProperty("name", expect.any(String));
+      expect(res.body).toHaveProperty("username", expect.any(String));
+      expect(res.body).toHaveProperty("status", expect.any(Boolean));
     });
   });
 });
@@ -214,6 +199,47 @@ describe("GET /users/histories/:consultantId", () => {
       const res = await request(app)
         .get("/users/histories/3")
         .set("access_token", validTokenUser);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
+  });
+});
+
+describe("PATCH /users/histories", () => {
+  describe("PATCH /users/histories -- success case to patch history status", () => {
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .patch("/history-status/1")
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+      expect(res.body).toHaveProperty("UserId", expect.any(Number));
+      expect(res.body).toHaveProperty("ConsultantId", expect.any(Number));
+      expect(res.body).toHaveProperty("MongoConsultationId", expect.any(String));
+    });
+
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .patch("/history-status/2")
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+      expect(res.body).toHaveProperty("UserId", expect.any(Number));
+      expect(res.body).toHaveProperty("ConsultantId", expect.any(Number));
+      expect(res.body).toHaveProperty("MongoConsultationId", expect.any(String));
+    });
+  });
+});
+
+
+describe("GET /users/histories", () => {
+  describe("GET /users/histories -- success case to get histories chat", () => {
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/histories")
+        .set("access_token", validTokenUser);
+        console.log(res.body)
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body.data).toEqual(expect.any(Array));
