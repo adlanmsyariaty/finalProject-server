@@ -122,7 +122,12 @@ class Controller {
   static async patchHistory(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const id = +req.params.id;
+      let id;
+      if (req.user.id) {
+        id = +req.user.id;
+      } else {
+        id = +req.params.id;
+      }
 
       const pacthedStatus = await History.update(
         {
