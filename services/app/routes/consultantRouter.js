@@ -9,7 +9,7 @@ router.delete("/:id", consultantController.deleteConsultant);
 router.post("/login", consultantController.loginConsultant);
 router.use(consultantAuthentication)
 router.patch("/", consultantController.patchVideoCode);
+// router.patch("/status", consultantController.patchVideoCode);
 router.get("/histories/close", historyController.fetchConsultantHistoriesClose);
-router.get("/histories/open", historyController.fetchConsultantHistoriesOpen);
 
 module.exports = router;

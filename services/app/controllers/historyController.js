@@ -27,7 +27,7 @@ class Controller {
       }
 
       await t.commit();
-      res.status(200).json({ data: histories, messages, details });
+      res.status(200).json({ data: histories, details });
     } catch (error) {
       await t.rollback();
       next(error);
@@ -43,27 +43,6 @@ class Controller {
         where: {
           [Op.and]: [{ ConsultantId: id }, { consultationStatus: "close" }],
         },
-        transaction: t,
-      });
-
-      await t.commit();
-      res.status(200).json({ data: histories });
-    } catch (error) {
-      await t.rollback();
-      next(error);
-    }
-  }
-
-  static async fetchConsultantHistoriesOpen(req, res, next) {
-    const t = await sequelize.transaction();
-    try {
-      const id = +req.user.id;
-
-      const histories = await History.findAll({
-        where: {
-          [Op.and]: [{ ConsultantId: id }, { consultationStatus: "open" }],
-        },
-        include: [User],
         transaction: t,
       });
 
