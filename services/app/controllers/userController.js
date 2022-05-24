@@ -88,6 +88,7 @@ class UserController {
         where: {
           id,
         },
+        include: [Wallet],
         transaction: t,
       });
 
