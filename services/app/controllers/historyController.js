@@ -21,8 +21,19 @@ class Controller {
         messages.push(response.data.messages)
       }
 
+      let details = []
+      for (let j = 0; j < histories.length; j++) {
+        const consultant = await User.findOne({
+          where: {
+            id: histories[j].ConsultantId
+          },
+          transaction: t,
+        })
+        details.push(consultant)
+      }
+
       await t.commit();
-      res.status(200).json({ data: histories, messages });
+      res.status(200).json({ data: histories, messages, details });
     } catch (error) {
       await t.rollback();
       next(error);
