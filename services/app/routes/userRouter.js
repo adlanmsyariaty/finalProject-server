@@ -9,7 +9,6 @@ const historyRouter = require("./historyRouter");
 const consultantController = require("../controllers/consultantController.js");
 const walletController = require("../controllers/walletController");
 
-
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
 router.use("/consultants", consultantRouter);

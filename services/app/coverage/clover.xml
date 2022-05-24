@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653381559749" clover="3.2.0">
-  <project timestamp="1653381559750" name="All files">
+<coverage generated="1653386858294" clover="3.2.0">
+  <project timestamp="1653386858294" name="All files">
     <metrics statements="624" coveredstatements="600" conditionals="192" coveredconditionals="173" methods="54" coveredmethods="53" elements="870" coveredelements="826" complexity="0" loc="624" ncloc="624" packages="6" files="28" classes="28"/>
     <package name="app">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
@@ -405,25 +405,25 @@
         <line num="84" count="1" type="stmt"/>
         <line num="85" count="1" type="stmt"/>
         <line num="87" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
         <line num="95" count="1" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
-        <line num="103" count="2" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
         <line num="104" count="2" type="stmt"/>
         <line num="105" count="2" type="stmt"/>
         <line num="106" count="2" type="stmt"/>
-        <line num="108" count="2" type="stmt"/>
-        <line num="115" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="117" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="118" count="1" type="stmt"/>
-        <line num="130" count="1" type="stmt"/>
-        <line num="143" count="2" type="stmt"/>
-        <line num="150" count="2" type="stmt"/>
+        <line num="107" count="2" type="stmt"/>
+        <line num="109" count="2" type="stmt"/>
+        <line num="116" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="118" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="144" count="2" type="stmt"/>
         <line num="151" count="2" type="stmt"/>
-        <line num="153" count="0" type="stmt"/>
+        <line num="152" count="2" type="stmt"/>
         <line num="154" count="0" type="stmt"/>
-        <line num="159" count="5" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="160" count="5" type="stmt"/>
       </file>
       <file name="walletController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\services\app\controllers\walletController.js">
         <metrics statements="16" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
