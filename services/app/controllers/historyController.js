@@ -109,7 +109,7 @@ class Controller {
     try {
       const id = +req.params.id
 
-      const pacthedStatus = await History.update(
+      const patchedStatus = await History.update(
         {
           consultationStatus: "close",
         },
@@ -122,8 +122,28 @@ class Controller {
         }
       );
 
+      const wallet = await Wallet.findOne({
+        where: {
+          UserId: patchedStatus[1][0].UserId
+        },
+        transaction: t,
+      })
+
+      const newUpdatedWallet = await Wallet.update(
+        {
+          ticketVideo: wallet.ticketVideo - 1
+        },
+        {
+          where: {
+            id: wallet.id
+          },
+          returning: true,
+          transaction: t,
+        }
+      )
+
       await t.commit();
-      res.status(200).json(pacthedStatus[1][0]);
+      res.status(200).json(newUpdatedWallet);
     } catch (error) {
       await t.rollback();
       next(error);
