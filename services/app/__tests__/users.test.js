@@ -375,6 +375,25 @@ describe("POST /register", () => {
   });
 });
 
+describe("PATCH /consultant-status/:id", () => {
+  describe("PATCH /consultant-status/:id -- success case for patch consultant status", () => {
+    test("should return updated for consultant data", async () => {
+      const res = await request(app).patch("/consultant-status/4")
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+    });
+  });
+
+  describe("PATCH /consultant-status/:id -- fail case for patch consultant status", () => {
+    test("should return updated for consultant data", async () => {
+      const res = await request(app).patch("/consultant-status/10")
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty("message", "Consultant not found");
+    });
+  });
+})
+
 describe("PATCH /users/consultants/login", () => {
   describe("PATCH /users/consultants/login -- success case for patch", () => {
     test("should return updated for consultant data", async () => {

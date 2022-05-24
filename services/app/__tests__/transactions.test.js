@@ -106,14 +106,14 @@ beforeAll(async () => {
   });
 });
 
-// afterAll(async () => {
-//   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
-//   await Wallet.destroy({
-//     truncate: true,
-//     cascade: true,
-//     restartIdentity: true,
-//   });
-// });
+afterAll(async () => {
+  await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
+  await Wallet.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+});
 
 describe("GET /users/wallet", () => {
   describe("GET /users/wallet -- success case to get wallet", () => {
@@ -139,6 +139,28 @@ describe("GET /users/wallet", () => {
       expect(res.status).toBe(401);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("message", "Unauthorized access account");
+    });
+  });
+});
+
+describe("PATCH /users/ticket", () => {
+  describe("PATCH /users/ticket -- success case to patch/increment ticket user", () => {
+    test("should return updated wallet data", async () => {
+      const res = await request(app)
+        .patch("/users/ticket")
+        .set("access_token", validTokenUser)
+        .send({ticket: 'chat'})
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+    });
+
+    test("should return updated wallet data", async () => {
+      const res = await request(app)
+        .patch("/users/ticket")
+        .set("access_token", validTokenUser)
+        .send({ticket: 'video'})
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
     });
   });
 });

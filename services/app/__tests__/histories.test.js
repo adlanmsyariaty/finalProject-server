@@ -51,13 +51,13 @@ beforeAll(async () => {
 
   const newConsultant = await User.findOne({
     where: {
-      id: 2,
+      id: 3,
     },
   });
 
   const newConsultant1 = await User.findOne({
     where: {
-      id: 2,
+      id: 4,
     },
   });
 
@@ -161,6 +161,46 @@ describe("GET /users/histories", () => {
       const res = await request(app)
         .get("/users/histories")
         .set("access_token", validTokenUser);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
+  });
+});
+
+describe("PATCH /users/consultants/histories/close", () => {
+  describe("PATCH /users/consultants/histories/close -- success case to get histories chat", () => {
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/consultants/histories/close")
+        .set("access_token", validTokenConsultant);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
+
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/consultants/histories/close")
+        .set("access_token", validTokenConsultant1);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
+
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/consultants/histories/open")
+        .set("access_token", validTokenConsultant);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
+
+    test("should return histories data", async () => {
+      const res = await request(app)
+        .get("/users/consultants/histories/open")
+        .set("access_token", validTokenConsultant1);
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body.data).toEqual(expect.any(Array));

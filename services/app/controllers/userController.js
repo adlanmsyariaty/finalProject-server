@@ -112,6 +112,8 @@ class UserController {
         transaction: t,
       });
 
+      if (!wallet) throw { name: "USER_NOT_FOUND" };
+
       if (ticket === "chat") {
         await Wallet.update(
           {
