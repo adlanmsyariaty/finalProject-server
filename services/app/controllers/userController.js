@@ -98,6 +98,60 @@ class UserController {
       next(error);
     }
   }
+
+  static async updateTicket(req, res, next) {
+    const t = await sequelize.transaction();
+    try {
+      const id = +req.user.id;
+      const { ticket } = req.body;
+
+      let wallet = await Wallet.findOne({
+        where: {
+          UserId: id,
+        },
+        transaction: t,
+      });
+
+      if (ticket === "chat") {
+        await Wallet.update(
+          {
+            ticketChat: wallet.ticketChat + 1,
+          },
+          {
+            where: {
+              UserId: id,
+            },
+            transaction: t,
+          }
+        );
+      } else {
+        await Wallet.update(
+          {
+            ticketVideo: wallet.ticketVideo + 1,
+          },
+          {
+            where: {
+              UserId: id,
+            },
+            transaction: t,
+          }
+        );
+      }
+
+      let updatedWallet = await Wallet.findOne({
+        where: {
+          UserId: id,
+        },
+        transaction: t,
+      });
+
+      await t.commit();
+      res.status(200).json(updatedWallet);
+    } catch (error) {
+      await t.rollback();
+      next(error);
+    }
+  }
 }
 
 module.exports = UserController;

@@ -6,9 +6,11 @@ const userRouter = require("./userRouter");
 const consultantRouter = require("./consultantRouter");
 const categoryRouter = require("./categoryRouter");
 const consultantController = require('../controllers/consultantController')
+const userController = require("../controllers/userController.js");
 const { adminAuthentication } = require("../middlewares/authentication");
 
 router.patch("/consultant-status/:id", consultantController.patchConsultantStatus)
+router.get("/user-detail/:id", userController.userDetail)
 router.use("/categories", categoryRouter);
 router.use("/users", userRouter);
 router.use("/login", loginRouter);
