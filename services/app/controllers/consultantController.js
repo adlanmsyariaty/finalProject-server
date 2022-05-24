@@ -58,7 +58,7 @@ class ConsultantController {
   static async patchStatus(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const id = +req.params.id
+      const id = +req.user.id
       let consultant = await User.findOne({
         where: {
           [Op.and]: [{ id: id }, { role: "consultant" }],
