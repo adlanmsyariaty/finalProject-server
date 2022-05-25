@@ -27,7 +27,7 @@ class Controller {
 
   static async paymentGateway(req, res, next) {
     try {
-      // const { email } = req.user;
+      const { email } = req.body;
       let parameter = {
         transaction_details: {
           order_id:
@@ -40,7 +40,7 @@ class Controller {
           gross_amount: 300000,
         },
         customer_details: {
-          email: "debby@mail.com",
+          email,
           phone: "+628127377777",
         },
         enabled_payments: [
