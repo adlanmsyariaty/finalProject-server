@@ -23,12 +23,19 @@ beforeAll(async () => {
       username: "debbyria",
       email: "debbyria@mail.com",
       password: "12345",
-      role: "consultant",
+      role: "user",
     },
     {
       name: "zakiy",
       username: "zakiynurhasyim",
       email: "zakiynurhasyim@mail.com",
+      password: "12345",
+      role: "consultant",
+    },
+    {
+      name: "adlan",
+      username: "adlanmalik",
+      email: "adlanmalik@mail.com",
       password: "12345",
       role: "consultant",
     },
@@ -42,6 +49,12 @@ beforeAll(async () => {
     }
   })
 
+  const newConsultant = await User.findOne({
+    where: {
+      id: 4
+    }
+  })
+
   validTokenUser = tokenGenerator({
     id: newUser.id,
     email: newUser.email,
@@ -50,6 +63,11 @@ beforeAll(async () => {
   validToken = tokenGenerator({
     id: newAdmin.id,
     email: newAdmin.email,
+  });
+
+  validTokenConsultant = tokenGenerator({
+    id: newConsultant.id,
+    email: newConsultant.email,
   });
 });
 
@@ -357,6 +375,37 @@ describe("POST /register", () => {
   });
 });
 
+describe("PATCH /consultant-status/:id", () => {
+  describe("PATCH /consultant-status/:id -- success case for patch consultant status", () => {
+    test("should return updated for consultant data", async () => {
+      const res = await request(app).patch("/consultant-status/4")
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("id", expect.any(Number));
+    });
+  });
+
+  describe("PATCH /consultant-status/:id -- fail case for patch consultant status", () => {
+    test("should return updated for consultant data", async () => {
+      const res = await request(app).patch("/consultant-status/10")
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty("message", "Consultant not found");
+    });
+  });
+})
+
+describe("PATCH /users/consultants/login", () => {
+  describe("PATCH /users/consultants/login -- success case for patch", () => {
+    test("should return updated for consultant data", async () => {
+      const data = { videoCode: "akjshdjksniuniun" };
+      const res = await request(app).patch("/users/consultants").send(data).set("access_token", validTokenConsultant)
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("videoCode", expect.any(String));
+    });
+  });
+})
+
 describe("POST /login", () => {
   describe("POST /login -- success case for login", () => {
     test("should return access_token for user with valid email, password", async () => {
@@ -370,6 +419,15 @@ describe("POST /login", () => {
     test("should return access_token for admin with valid email, password", async () => {
       const admin = { email: "malik@mail.com", password: "12345" };
       const res = await request(app).post("/login").send(admin);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(expect.any(Object));
+      expect(res.body).toHaveProperty("access_token", expect.any(String));
+    });
+
+    test("should return access_token for consultant with valid email, password", async () => {
+      const consultant = { email: "consultant234@gmail.com", password: "12345" };
+      const res = await request(app).post("/users/consultants/login").send(consultant);
+      console.log(res.body)
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body).toHaveProperty("access_token", expect.any(String));
@@ -463,6 +521,52 @@ describe("POST /login", () => {
           password: "",
         };
         const res = await request(app).post("/users/login").send(consultant);
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toHaveProperty("message", "Password is required");
+      });
+    });
+
+    describe("POST /login -- failure case for consultant login", () => {
+      test("should return error message Invalid email or password with status 401 due to wrong email for user login", async () => {
+        const consultant = {
+          email: "consultant2346@gmail.com",
+          password: "12345",
+        };
+        const res = await request(app).post("/users/consultants/login").send(consultant);
+        expect(res.status).toBe(401);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toHaveProperty("message", "Invalid email or password");
+      });
+
+      test("should return error message Invalid email or password with status 401 due to wrong password for user login", async () => {
+        const consultant = {
+          email: "consultant234@gmail.com",
+          password: "wrongpasswordinput",
+        };
+        const res = await request(app).post("/users/consultants/login").send(consultant);
+        expect(res.status).toBe(401);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toHaveProperty("message", "Invalid email or password");
+      });
+
+      test("should return error message Invalid email or password with status 401 due to email is not inputted for admin login", async () => {
+        const consultant = {
+          email: "",
+          password: "wrongpasswordinput",
+        };
+        const res = await request(app).post("/users/consultants/login").send(consultant);
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toHaveProperty("message", "Email is required");
+      });
+
+      test("should return error message Invalid email or password with status 401 due to password is not inputted for admin login", async () => {
+        const consultant = {
+          email: "consultant234@gmail.com",
+          password: "",
+        };
+        const res = await request(app).post("/users/consultants/login").send(consultant);
         expect(res.status).toBe(400);
         expect(res.body).toEqual(expect.any(Object));
         expect(res.body).toHaveProperty("message", "Password is required");

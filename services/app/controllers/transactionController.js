@@ -16,6 +16,7 @@ class Controller {
           WalletId: walletData.id,
         },
         include: [{ model: Category, attributes: ["name", "type", "icon"] }],
+        order: [["transactionDate", "DESC"]]
       });
 
       res.status(200).json({
@@ -52,9 +53,7 @@ class Controller {
         transaction: t,
       });
 
-      const checkCategory = await Category.findByPk(CategoryId, {
-        transaction: t,
-      });
+      const checkCategory = await Category.findByPk(CategoryId);
 
       const wallet = await Wallet.findByPk(walletData.id, { transaction: t });
 
@@ -291,7 +290,7 @@ class Controller {
             ) {
               totalIncome += el.amount;
             } else if (
-              el.Category.type === "Food & Baverage" ||
+              el.Category.type === "Food & Beverage" ||
               el.Category.type === "Transportation" ||
               el.Category.type === "Rentals" ||
               el.Category.type === "Water Bill" ||
@@ -318,10 +317,9 @@ class Controller {
               el.Category.type === "Makeup" ||
               el.Category.type === "Gifts & Donations" ||
               el.Category.type === "Streaming Services" ||
-              el.Category.type === "Other Utility Bills" ||
-              el.Category.type === "Home Maintenance" ||
               el.Category.type === "Fun Money" ||
               el.Category.type === "Pay Interest" ||
+              el.Category.type === "Investment" ||
               el.Category.type === "Outgoing Transfer"
             ) {
               totalWants += el.amount;
@@ -352,11 +350,11 @@ class Controller {
       let moneyStatus = "";
 
       if (ratioNeeds <= 50 && ratioWants <= 30) {
-        moneyStatus = "save";
+        moneyStatus = "Safe";
       } else if (ratioExpenses >= 100) {
-        moneyStatus = "danger";
+        moneyStatus = "Danger";
       } else {
-        moneyStatus = "warning";
+        moneyStatus = "Warning";
       }
 
       let expense = {};

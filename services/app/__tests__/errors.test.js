@@ -38,6 +38,13 @@ beforeAll(async () => {
       password: "12345",
       role: "user",
     },
+    {
+      name: "adlan",
+      username: "adlan",
+      email: "adlan@mail.com",
+      password: "12345",
+      role: "consultant",
+    },
   ];
 
   await User.bulkCreate(data);
@@ -57,6 +64,12 @@ beforeAll(async () => {
   const newUser2 = await User.findOne({
     where: {
       id: 4,
+    },
+  });
+
+  const newConsultant = await User.findOne({
+    where: {
+      id: 5,
     },
   });
 
@@ -81,6 +94,11 @@ beforeAll(async () => {
     id: newAdmin.id,
     email: newAdmin.email,
   });
+
+  validTokenConsultant = tokenGenerator({
+    id: newConsultant.id,
+    email: newConsultant.email,
+  });
 });
 
 describe("GET /categories", () => {
@@ -88,6 +106,18 @@ describe("GET /categories", () => {
     jest.spyOn(Category, "findAll").mockRejectedValue("Error");
     test("should return wallet data", async () => {
       const res = await request(app).get("/categories");
+      expect(res.status).toBe(500);
+      expect(res.body).toHaveProperty("message", expect.any(String));
+    });
+  });
+});
+
+describe("PATCH /users/consultants", () => {
+  describe("PATCH /users/consultants -- fail case to patch consultant", () => {
+    jest.spyOn(User, "update").mockRejectedValue("Error");
+    test("should return error message", async () => {
+      const data = { videoCode: "akjshdjksniuniun" };
+      const res = await request(app).patch("/users/consultants").send(data).set("access_token", validTokenConsultant)
       expect(res.status).toBe(500);
       expect(res.body).toHaveProperty("message", expect.any(String));
     });
