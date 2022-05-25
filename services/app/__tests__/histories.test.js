@@ -211,12 +211,13 @@ describe("PATCH /users/histories", () => {
     test("should return histories data", async () => {
       const res = await request(app)
         .patch("/history-status/1")
+        console.log(res.body)
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body).toHaveProperty("id", expect.any(Number));
       expect(res.body).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body).toHaveProperty("ConsultantId", expect.any(Number));
-      expect(res.body).toHaveProperty("MongoConsultationId", expect.any(String));
+      expect(res.body).toHaveProperty("ticketVideo", expect.any(Number));
+      expect(res.body).toHaveProperty("totalMoney", expect.any(Number));
     });
 
     test("should return histories data", async () => {
@@ -226,8 +227,8 @@ describe("PATCH /users/histories", () => {
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body).toHaveProperty("id", expect.any(Number));
       expect(res.body).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body).toHaveProperty("ConsultantId", expect.any(Number));
-      expect(res.body).toHaveProperty("MongoConsultationId", expect.any(String));
+      expect(res.body).toHaveProperty("ticketVideo", expect.any(Number));
+      expect(res.body).toHaveProperty("totalMoney", expect.any(Number));
     });
   });
 });

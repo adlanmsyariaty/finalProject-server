@@ -143,7 +143,7 @@ class Controller {
       )
 
       await t.commit();
-      res.status(200).json(newUpdatedWallet);
+      res.status(200).json(newUpdatedWallet[1][0]);
     } catch (error) {
       await t.rollback();
       next(error);

@@ -4,7 +4,7 @@
   "description": "THIS README FOR M-CURE PROJECT [SERVER]",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --coverage --forceExit --runInBand",
+    "test": "npx jest --coverage --forceExit --runInBand --silent",
     "start": "node bin/www"
   },
   "repository": {

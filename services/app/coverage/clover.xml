@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653419380318" clover="3.2.0">
-  <project timestamp="1653419380319" name="All files">
-    <metrics statements="628" coveredstatements="612" conditionals="194" coveredconditionals="174" methods="54" coveredmethods="54" elements="876" coveredelements="840" complexity="0" loc="628" ncloc="628" packages="6" files="28" classes="28"/>
+<coverage generated="1653457175163" clover="3.2.0">
+  <project timestamp="1653457175163" name="All files">
+    <metrics statements="630" coveredstatements="614" conditionals="194" coveredconditionals="174" methods="54" coveredmethods="54" elements="878" coveredelements="842" complexity="0" loc="630" ncloc="630" packages="6" files="28" classes="28"/>
     <package name="app">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="app.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\services\app\app.js">
@@ -37,7 +37,7 @@
       </file>
     </package>
     <package name="app.controllers">
-      <metrics statements="388" coveredstatements="375" conditionals="149" coveredconditionals="135" methods="29" coveredmethods="29"/>
+      <metrics statements="390" coveredstatements="377" conditionals="149" coveredconditionals="135" methods="29" coveredmethods="29"/>
       <file name="adminController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\services\app\controllers\adminController.js">
         <metrics statements="38" coveredstatements="38" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
         <line num="1" count="5" type="stmt"/>
@@ -169,7 +169,7 @@
         <line num="197" count="5" type="stmt"/>
       </file>
       <file name="historyController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\services\app\controllers\historyController.js">
-        <metrics statements="52" coveredstatements="48" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <metrics statements="54" coveredstatements="50" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="1" count="5" type="stmt"/>
         <line num="2" count="5" type="stmt"/>
         <line num="3" count="5" type="stmt"/>
@@ -217,11 +217,13 @@
         <line num="109" count="2" type="stmt"/>
         <line num="110" count="2" type="stmt"/>
         <line num="112" count="2" type="stmt"/>
-        <line num="127" count="2" type="stmt"/>
-        <line num="128" count="2" type="stmt"/>
-        <line num="130" count="0" type="stmt"/>
-        <line num="131" count="0" type="stmt"/>
-        <line num="136" count="5" type="stmt"/>
+        <line num="125" count="2" type="stmt"/>
+        <line num="132" count="2" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="146" count="2" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="154" count="5" type="stmt"/>
       </file>
       <file name="transactionController.js" path="D:\Hacktiv8\3. Phase 3\final-project\m-cure-server\services\app\controllers\transactionController.js">
         <metrics statements="146" coveredstatements="146" conditionals="109" coveredconditionals="98" methods="7" coveredmethods="7"/>
