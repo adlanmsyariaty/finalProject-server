@@ -211,7 +211,7 @@ describe("PATCH /users/histories", () => {
     test("should return histories data", async () => {
       const res = await request(app)
         .patch("/history-status/1")
-        console.log(res.body)
+        console.log(res.body) 
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expect.any(Object));
       expect(res.body).toHaveProperty("id", expect.any(Number));
